@@ -23,8 +23,15 @@ slowPrintSum(2, 8); // prints '10' after 500 ms
 ***********************************************************************/
 
 function postponeWithArgs(cb, delay) {
-  // Your code here
+  return function(...args){
+    setTimeout(cb, delay, ...args);
+  }
 }
+
+const printSum = (num1, num2) => console.log(num1 + num2);
+const slowPrintSum = postponeWithArgs(printSum, 500);
+slowPrintSum(4, 3); // prints '7' after 500 ms
+slowPrintSum(2, 8); // prints '10' after 500 ms
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
